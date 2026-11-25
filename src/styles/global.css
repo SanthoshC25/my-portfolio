@@ -175,6 +175,7 @@ ul, ol { list-style: none; }
   align-items: center;
   justify-content: center;
   min-height: 480px;
+  height: 480px;
   position: relative;
   width: 100%;
   max-width: 540px;

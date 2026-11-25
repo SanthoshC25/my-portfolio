@@ -249,17 +249,17 @@ export default function Hero() {
           {/* Right side — 3D Canvas */}
           <motion.div
             className="hero-3d-container"
-            initial={{ opacity: 0, scale: 0.85 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 3.2, duration: 1 }}
+            transition={{ duration: 0.6 }}
           >
-            {/* Outer glow aura */}
+            {/* Outer Eclipse Glow Aura */}
             <div style={{
               position: 'absolute',
               inset: 0,
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(214,40,40,0.15) 0%, rgba(201,164,92,0.05) 50%, transparent 75%)',
-              filter: 'blur(50px)',
+              background: 'radial-gradient(circle, rgba(214,40,40,0.22) 0%, rgba(201,164,92,0.08) 45%, transparent 70%)',
+              filter: 'blur(35px)',
               pointerEvents: 'none',
             }} />
 

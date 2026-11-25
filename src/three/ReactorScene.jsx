@@ -1,9 +1,10 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { MeshDistortMaterial, Sphere, Torus, Float, Stars } from '@react-three/drei';
+import * as THREE from 'three';
 
 /* ── Floating particle cloud (Crimson Red) ── */
-function Particles({ count = 140 }) {
+function Particles({ count = 150 }) {
   const mesh = useRef();
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
@@ -31,11 +32,11 @@ function Particles({ count = 140 }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.025}
+        size={0.03}
         color="#D62828"
         sizeAttenuation
         transparent
-        opacity={0.75}
+        opacity={0.8}
       />
     </points>
   );
@@ -70,17 +71,70 @@ function GoldParticles({ count = 90 }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.018}
+        size={0.022}
         color="#C9A45C"
         sizeAttenuation
         transparent
-        opacity={0.55}
+        opacity={0.65}
       />
     </points>
   );
 }
 
-/* ── Animated torus ring ── */
+/* ── Celestial Eclipse Disc & Glowing Corona Ring ── */
+function EclipseCorona() {
+  const groupRef = useRef();
+
+  useFrame((state) => {
+    if (groupRef.current) {
+      // Gentle pulsating rotation
+      groupRef.current.rotation.z = state.clock.elapsedTime * 0.08;
+    }
+  });
+
+  return (
+    <group ref={groupRef} position={[0, 0, -0.15]}>
+      {/* Outer Corona Flare Ring */}
+      <mesh>
+        <ringGeometry args={[1.32, 1.48, 64]} />
+        <meshBasicMaterial
+          color="#D62828"
+          transparent
+          opacity={0.65}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Gold Inner Eclipse Corona Ring */}
+      <mesh>
+        <ringGeometry args={[1.28, 1.34, 64]} />
+        <meshBasicMaterial
+          color="#C9A45C"
+          transparent
+          opacity={0.85}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+
+      {/* Visible Eclipse Disc Structure (Translucent Obsidian) */}
+      <mesh position={[0, 0, -0.05]}>
+        <circleGeometry args={[1.30, 64]} />
+        <meshStandardMaterial
+          color="#121620"
+          emissive="#D62828"
+          emissiveIntensity={0.2}
+          roughness={0.4}
+          metalness={0.7}
+          transparent
+          opacity={0.75}
+          side={THREE.DoubleSide}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+/* ── Animated Torus Rings (Bold, Glowing Ellipses) ── */
 function Ring({ radius, tube, color, speed, tiltX = 0, tiltZ = 0 }) {
   const ref = useRef();
   useFrame((state) => {
@@ -90,15 +144,15 @@ function Ring({ radius, tube, color, speed, tiltX = 0, tiltZ = 0 }) {
   });
 
   return (
-    <Torus ref={ref} args={[radius, tube, 16, 100]} rotation={[tiltX, 0, tiltZ]}>
+    <Torus ref={ref} args={[radius, tube, 20, 120]} rotation={[tiltX, 0, tiltZ]}>
       <meshStandardMaterial
         color={color}
         emissive={color}
-        emissiveIntensity={0.5}
-        metalness={0.85}
-        roughness={0.15}
+        emissiveIntensity={1.4}
+        metalness={0.9}
+        roughness={0.1}
         transparent
-        opacity={0.65}
+        opacity={0.9}
       />
     </Torus>
   );
@@ -122,7 +176,7 @@ function ReactorCore() {
         <meshStandardMaterial
           color="#D62828"
           emissive="#D62828"
-          emissiveIntensity={1.8}
+          emissiveIntensity={2.0}
           metalness={0.9}
           roughness={0.1}
           wireframe
@@ -134,7 +188,7 @@ function ReactorCore() {
         <meshStandardMaterial
           color="#C9A45C"
           emissive="#D62828"
-          emissiveIntensity={1.0}
+          emissiveIntensity={1.2}
           metalness={1}
           roughness={0.0}
         />
@@ -143,46 +197,66 @@ function ReactorCore() {
   );
 }
 
-/* ── Outer distorted sphere shell ── */
+/* ── Outer Visible Geodesic / Distorted Shell ── */
 function OuterShell() {
   const ref = useRef();
+  const wireRef = useRef();
+
   useFrame((state) => {
     if (ref.current) {
       ref.current.rotation.z = state.clock.elapsedTime * 0.05;
+    }
+    if (wireRef.current) {
+      wireRef.current.rotation.y = -state.clock.elapsedTime * 0.08;
+      wireRef.current.rotation.x = state.clock.elapsedTime * 0.04;
     }
   });
 
   return (
     <Float speed={1.5} rotationIntensity={0.4} floatIntensity={0.4}>
-      <Sphere ref={ref} args={[1.35, 64, 64]}>
+      {/* Outer Holographic Energy Sphere */}
+      <Sphere ref={ref} args={[1.34, 64, 64]}>
         <MeshDistortMaterial
           color="#D62828"
-          emissive="#300000"
-          emissiveIntensity={0.35}
-          metalness={0.65}
-          roughness={0.25}
-          distort={0.25}
+          emissive="#660a0a"
+          emissiveIntensity={0.7}
+          metalness={0.7}
+          roughness={0.2}
+          distort={0.22}
           speed={2}
           transparent
-          opacity={0.1}
+          opacity={0.3}
           wireframe={false}
         />
       </Sphere>
+
+      {/* Visible Geodesic Cage Structure */}
+      <mesh ref={wireRef}>
+        <icosahedronGeometry args={[1.36, 2]} />
+        <meshStandardMaterial
+          color="#C9A45C"
+          emissive="#D62828"
+          emissiveIntensity={0.9}
+          wireframe
+          transparent
+          opacity={0.35}
+        />
+      </mesh>
     </Float>
   );
 }
 
-/* ── Main exported scene (Clean Cinematic Arc Reactor) ── */
+/* ── Main exported scene (Clean Cinematic Arc Reactor with Eclipse) ── */
 export default function ReactorScene() {
   return (
     <>
       {/* Lighting */}
-      <ambientLight intensity={0.25} />
-      <pointLight position={[0, 0, 0]} intensity={3.5} color="#D62828" distance={9} />
-      <pointLight position={[4, 2, 2]} intensity={1.0} color="#C9A45C" distance={10} />
-      <pointLight position={[-4, -2, -2]} intensity={0.6} color="#D62828" distance={10} />
+      <ambientLight intensity={0.4} />
+      <pointLight position={[0, 0, 0]} intensity={4.5} color="#D62828" distance={10} />
+      <pointLight position={[4, 2, 3]} intensity={1.5} color="#C9A45C" distance={12} />
+      <pointLight position={[-4, -2, -3]} intensity={1.0} color="#D62828" distance={12} />
 
-      {/* Deep starfield inside hero */}
+      {/* Deep starfield */}
       <Stars
         radius={25}
         depth={50}
@@ -197,17 +271,20 @@ export default function ReactorScene() {
       <Particles count={150} />
       <GoldParticles count={90} />
 
+      {/* Celestial Eclipse Disc & Radiant Corona */}
+      <EclipseCorona />
+
       {/* Core reactor */}
       <ReactorCore />
 
-      {/* Outer energy shell */}
+      {/* Outer energy shell & geodesic structure */}
       <OuterShell />
 
-      {/* Orbital gyroscopic energy rings */}
-      <Ring radius={1.75} tube={0.014} color="#D62828" speed={0.65}  tiltX={Math.PI / 2} tiltZ={0} />
-      <Ring radius={2.05} tube={0.011} color="#C9A45C" speed={-0.45} tiltX={Math.PI / 4} tiltZ={Math.PI / 6} />
-      <Ring radius={2.35} tube={0.009} color="#D62828" speed={0.35}  tiltX={Math.PI / 6} tiltZ={Math.PI / 3} />
-      <Ring radius={1.45} tube={0.016} color="#C9A45C" speed={-0.75} tiltX={0}           tiltZ={Math.PI / 5} />
+      {/* Orbital gyroscopic energy rings (Bold & radiant) */}
+      <Ring radius={1.75} tube={0.026} color="#D62828" speed={0.65}  tiltX={Math.PI / 2} tiltZ={0} />
+      <Ring radius={2.05} tube={0.022} color="#C9A45C" speed={-0.45} tiltX={Math.PI / 4} tiltZ={Math.PI / 6} />
+      <Ring radius={2.35} tube={0.020} color="#D62828" speed={0.35}  tiltX={Math.PI / 6} tiltZ={Math.PI / 3} />
+      <Ring radius={1.48} tube={0.028} color="#C9A45C" speed={-0.75} tiltX={0}           tiltZ={Math.PI / 5} />
     </>
   );
 }
