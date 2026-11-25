@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import IronManScene from '../three/IronManScene';
+import ReactorScene from '../three/ReactorScene';
 
 const container = {
   hidden: { opacity: 0 },
@@ -261,18 +261,18 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
-            {/* Seamless Cosmic Glow Aura (No Sharp Corners) */}
+            {/* Outer Eclipse Glow Aura */}
             <div style={{
               position: 'absolute',
-              inset: '-10%',
+              inset: 0,
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(214,40,40,0.18) 0%, rgba(201,164,92,0.06) 45%, transparent 72%)',
-              filter: 'blur(45px)',
+              background: 'radial-gradient(circle, rgba(214,40,40,0.22) 0%, rgba(201,164,92,0.08) 45%, transparent 70%)',
+              filter: 'blur(35px)',
               pointerEvents: 'none',
             }} />
 
             <Suspense fallback={
-              <div style={{ position: 'relative', width: 240, height: 240, maxWidth: '100%', margin: '0 auto' }}>
+              <div style={{ position: 'relative', width: 280, height: 280, maxWidth: '100%' }}>
                 <div style={{
                   position: 'absolute', inset: 0, borderRadius: '50%',
                   border: '1px solid rgba(214,40,40,0.2)',
@@ -287,7 +287,7 @@ export default function Hero() {
               </div>
             }>
               <Canvas
-                camera={{ position: [0, 0, isMobile ? 3.3 : 4.2], fov: 45 }}
+                camera={{ position: [0, 0, isMobile ? 3.7 : 5.4], fov: 48 }}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -297,15 +297,17 @@ export default function Hero() {
                 gl={{ antialias: true, alpha: true }}
                 dpr={[1, 2]}
               >
-                <IronManScene />
+                <ReactorScene />
                 <OrbitControls
                   enableZoom={false}
                   enablePan={false}
                   enableRotate={!isMobile}
+                  autoRotate
+                  autoRotateSpeed={0.5}
                   dampingFactor={0.05}
                   enableDamping
-                  maxPolarAngle={Math.PI * 0.75}
-                  minPolarAngle={Math.PI * 0.25}
+                  maxPolarAngle={Math.PI}
+                  minPolarAngle={0}
                 />
               </Canvas>
             </Suspense>
