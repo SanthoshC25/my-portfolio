@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import socialLinks from '../data/socialLinks';
 
 const projectTypes = [
   'Web Application',
@@ -96,7 +97,7 @@ export default function ContactForm() {
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nProject Type: ${form.projectType}\n\n${form.message}`
     );
-    const mailtoLink = `mailto:your.email@example.com?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:${socialLinks.email.address}?subject=${subject}&body=${body}`;
 
     // Open mailto
     window.location.href = mailtoLink;
