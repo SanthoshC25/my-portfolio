@@ -12,11 +12,7 @@ export default function Projects() {
         {projects.length === 0 ? (
           <ProjectsEmptyState />
         ) : (
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
-            gap: 'var(--space-xl)',
-          }}>
+          <div className="projects-grid">
             {projects.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}

@@ -129,20 +129,13 @@ export default function Hero() {
 
       {/* Content */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 var(--space-xl)', width: '100%', position: 'relative', zIndex: 2 }}>
-        <div className="hero-layout" style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 'var(--space-3xl)',
-          minHeight: '100vh',
-          paddingTop: 80,
-          paddingBottom: 40,
-        }}>
+        <div className="hero-layout">
           {/* Left content */}
           <motion.div
+            className="hero-content"
             variants={container}
             initial="hidden"
             animate="show"
-            style={{ flex: '1 1 60%', position: 'relative' }}
           >
             {/* Freelance badge */}
             <motion.div variants={item} style={{
@@ -193,16 +186,13 @@ export default function Hero() {
             </motion.h1>
 
             {/* Subtitle */}
-            <motion.div variants={item} style={{
+            <motion.div variants={item} className="hero-subtitle" style={{
               fontFamily: 'var(--font-mono)',
               fontSize: '0.9rem',
               letterSpacing: '0.25em',
               color: 'var(--text-secondary)',
               textTransform: 'uppercase',
               marginBottom: 'var(--space-lg)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 'var(--space-sm)',
             }}>
               <span style={{ width: 30, height: 1, background: 'var(--accent-primary)' }} />
               Software Developer
@@ -235,11 +225,7 @@ export default function Hero() {
             </motion.p>
 
             {/* CTAs */}
-            <motion.div variants={item} className="hero-buttons" style={{
-              display: 'flex',
-              gap: 'var(--space-md)',
-              flexWrap: 'wrap',
-            }}>
+            <motion.div variants={item} className="hero-buttons">
               <motion.button
                 className="btn btn-primary"
                 onClick={() => scrollTo('projects')}
@@ -260,22 +246,12 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right side — 3D Canvas with 3D Orbiting Skills */}
+          {/* Right side — 3D Canvas */}
           <motion.div
             className="hero-3d-container"
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 3.2, duration: 1 }}
-            style={{
-              flex: '1 1 45%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minHeight: 500,
-              position: 'relative',
-              width: '100%',
-              maxWidth: 540,
-            }}
           >
             {/* Outer glow aura */}
             <div style={{
@@ -288,7 +264,7 @@ export default function Hero() {
             }} />
 
             <Suspense fallback={
-              <div style={{ position: 'relative', width: 340, height: 340 }}>
+              <div style={{ position: 'relative', width: 280, height: 280, maxWidth: '100%' }}>
                 <div style={{
                   position: 'absolute', inset: 0, borderRadius: '50%',
                   border: '1px solid rgba(214,40,40,0.2)',
@@ -304,7 +280,7 @@ export default function Hero() {
             }>
               <Canvas
                 camera={{ position: [0, 0, 5.6], fov: 48 }}
-                style={{ width: '100%', height: 490, maxWidth: 540 }}
+                style={{ width: '100%', height: '100%', minHeight: 280, maxHeight: 490 }}
                 gl={{ antialias: true, alpha: true }}
                 dpr={[1, 2]}
               >

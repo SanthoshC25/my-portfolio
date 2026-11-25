@@ -117,12 +117,7 @@ export default function About() {
             </p>
 
             {/* Interest cards */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: 'var(--space-md)',
-              marginBottom: 'var(--space-2xl)',
-            }}>
+            <div className="about-interests-grid">
               {interests.map((item, i) => (
                 <motion.div
                   key={item.label}

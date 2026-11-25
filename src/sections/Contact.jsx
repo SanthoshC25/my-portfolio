@@ -52,14 +52,7 @@ export default function Contact() {
           subtitle="Get In Touch"
         />
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '2fr 3fr',
-          gap: 'var(--space-3xl)',
-          alignItems: 'start',
-        }}
-        className="two-col"
-        >
+        <div className="two-col" style={{ alignItems: 'start' }}>
           {/* Left — Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}

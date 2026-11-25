@@ -2,137 +2,257 @@
    RESPONSIVE BREAKPOINTS
    ═══════════════════════════════════════════ */
 
-/* ═══ Laptop ═══ */
+/* ═══ Laptop / Small Desktop ═══ */
 @media (max-width: 1199px) {
   .container { max-width: 960px; }
-  .hero-content h1 { font-size: clamp(2.5rem, 4.5vw, 3.5rem); }
+  .hero-content h1 { font-size: clamp(2.3rem, 4.5vw, 3.5rem); }
 }
 
-/* ═══ Tablet ═══ */
+/* ═══ Tablet Landscape & Portrait ═══ */
 @media (max-width: 991px) {
-  .container { max-width: 720px; }
+  .container {
+    max-width: 720px;
+    padding: 0 var(--space-lg);
+  }
 
   .section-padding {
     padding: var(--space-3xl) 0;
   }
 
-  .hero-content h1 { font-size: clamp(2rem, 4vw, 3rem); }
-
-  .grid-3 { grid-template-columns: repeat(2, 1fr); }
-  .grid-4 { grid-template-columns: repeat(2, 1fr); }
-
-  .two-col {
-    grid-template-columns: 1fr;
-    gap: var(--space-2xl);
+  /* Navigation: Hide desktop links and show mobile hamburger */
+  .nav-links {
+    display: none !important;
   }
 
-  .hide-tablet { display: none; }
+  .mobile-menu-btn {
+    display: flex !important;
+  }
+
+  .hide-tablet {
+    display: none !important;
+  }
+
+  /* Two Column layouts stack to single column */
+  .two-col {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-2xl) !important;
+  }
+
+  .grid-3 { grid-template-columns: repeat(2, 1fr) !important; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+
+  /* Hero Section */
+  .hero-layout {
+    flex-direction: column !important;
+    text-align: center !important;
+    min-height: auto !important;
+    padding-top: 110px !important;
+    padding-bottom: 50px !important;
+    gap: var(--space-2xl) !important;
+  }
+
+  .hero-content {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-content p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-subtitle {
+    justify-content: center !important;
+  }
+
+  .hero-buttons {
+    justify-content: center !important;
+  }
+
+  .hero-3d-container {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 380px !important;
+    min-height: 380px !important;
+    height: 380px !important;
+    margin: 0 auto !important;
+  }
 }
 
-/* ═══ Mobile ═══ */
+/* ═══ Mobile Phones ═══ */
 @media (max-width: 767px) {
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+
   .container {
-    max-width: 100%;
-    padding: 0 var(--space-md);
+    max-width: 100% !important;
+    padding: 0 var(--space-md) !important;
   }
 
   .section-padding {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-2xl) 0 !important;
   }
 
-  h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
-  h2 { font-size: clamp(1.5rem, 5vw, 2rem); }
-  h3 { font-size: clamp(1.1rem, 3.5vw, 1.4rem); }
+  /* Typography scale */
+  h1 { font-size: clamp(2rem, 7vw, 2.8rem) !important; }
+  h2 { font-size: clamp(1.6rem, 5.5vw, 2.2rem) !important; }
+  h3 { font-size: clamp(1.2rem, 4vw, 1.5rem) !important; }
 
   .grid-2,
   .grid-3,
   .grid-4 {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: var(--space-lg) !important;
   }
 
   .two-col {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    grid-template-columns: 1fr !important;
+    gap: var(--space-xl) !important;
   }
 
-  .hide-mobile { display: none; }
-  .show-mobile { display: block; }
-
-  .hero-section {
-    text-align: center;
-    min-height: auto;
-    padding-top: 100px;
+  .hide-mobile {
+    display: none !important;
   }
 
-  .hero-layout {
-    flex-direction: column;
+  .show-mobile {
+    display: block !important;
   }
 
-  .hero-3d-container {
-    display: none;
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero-buttons .btn {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .tech-labels {
-    display: none;
-  }
-
-  .timeline-line {
-    left: 20px;
-  }
-
-  .timeline-entry {
-    padding-left: 50px;
-    padding-right: 0;
-  }
-
-  .timeline-entry:nth-child(even) {
-    padding-left: 50px;
-    padding-right: 0;
-  }
-
-  .workflow-steps {
-    flex-direction: column;
-  }
-
-  .workflow-connector {
-    width: 2px;
-    height: 40px;
-  }
-
+  /* Navigation */
   .nav-links {
-    display: none;
+    display: none !important;
   }
 
   .mobile-menu-btn {
-    display: flex;
+    display: flex !important;
+  }
+
+  /* Hero Section */
+  .hero-layout {
+    flex-direction: column !important;
+    text-align: center !important;
+    min-height: auto !important;
+    padding-top: 95px !important;
+    padding-bottom: 30px !important;
+    gap: var(--space-xl) !important;
+  }
+
+  .hero-content {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+  }
+
+  .hero-subtitle {
+    justify-content: center !important;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: var(--space-sm) !important;
+  }
+
+  .hero-buttons .btn {
+    width: 100% !important;
+    max-width: 290px !important;
+    justify-content: center !important;
+  }
+
+  /* 3D Arc Reactor on Mobile */
+  .hero-3d-container {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 310px !important;
+    min-height: 310px !important;
+    height: 310px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Projects Grid */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Contact Form */
+  .contact-name-email-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Workflow Steps */
+  .workflow-steps {
+    flex-direction: column !important;
+    gap: var(--space-lg) !important;
+  }
+
+  .workflow-connector {
+    width: 2px !important;
+    height: 32px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Timeline */
+  .timeline-container {
+    padding-left: 20px !important;
+  }
+
+  .timeline-line {
+    left: 10px !important;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: var(--space-xl) !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: var(--space-md) !important;
+    text-align: center !important;
   }
 }
 
-/* ═══ Small Mobile ═══ */
-@media (max-width: 479px) {
+/* ═══ Ultra-Small Mobile (< 400px) ═══ */
+@media (max-width: 399px) {
   .container {
-    padding: 0 var(--space-sm);
+    padding: 0 var(--space-sm) !important;
   }
 
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.3rem; }
+  h1 { font-size: 1.85rem !important; }
+  h2 { font-size: 1.4rem !important; }
 
-  .section-padding {
-    padding: var(--space-xl) 0;
+  .hero-3d-container {
+    max-width: 260px !important;
+    min-height: 260px !important;
+    height: 260px !important;
   }
 
   .btn {
-    padding: 12px 24px;
-    font-size: 0.85rem;
+    padding: 12px 20px !important;
+    font-size: 0.8rem !important;
   }
 }

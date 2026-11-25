@@ -111,13 +111,7 @@ export default function Navbar({ theme, toggleTheme }) {
           </motion.a>
 
           {/* Desktop Nav */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 'var(--space-lg)',
-          }}
-          className="nav-links"
-          >
+          <div className="nav-links">
             {navLinks.map((link) => (
               <motion.a
                 key={link.id}
@@ -172,18 +166,6 @@ export default function Navbar({ theme, toggleTheme }) {
               className="mobile-menu-btn"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle mobile menu"
-              style={{
-                display: 'none',
-                width: 42,
-                height: 42,
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-color)',
-                background: 'transparent',
-                color: 'var(--text-primary)',
-                cursor: 'pointer',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
             >
               {mobileOpen ? <X size={20} /> : <Menu size={20} />}
             </button>

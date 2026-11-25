@@ -124,7 +124,7 @@ export default function ContactForm() {
       }}
     >
       {/* Name & Email row */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--space-md)', marginBottom: 'var(--space-md)' }}>
+      <div className="contact-name-email-grid">
         <div>
           <label htmlFor="contact-name" style={labelStyle}>Full Name</label>
           <input
