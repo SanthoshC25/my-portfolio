@@ -179,6 +179,13 @@ ul, ol { list-style: none; }
   position: relative;
   width: 100%;
   max-width: 540px;
+  overflow: visible;
+  background: transparent;
+  border: none;
+}
+
+.hero-3d-container canvas {
+  background: transparent !important;
 }
 
 .hero-subtitle {

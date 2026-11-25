@@ -264,10 +264,10 @@ export default function Hero() {
             {/* Outer Eclipse Glow Aura */}
             <div style={{
               position: 'absolute',
-              inset: 0,
+              inset: '-10%',
               borderRadius: '50%',
               background: 'radial-gradient(circle, rgba(214,40,40,0.22) 0%, rgba(201,164,92,0.08) 45%, transparent 70%)',
-              filter: 'blur(35px)',
+              filter: 'blur(40px)',
               pointerEvents: 'none',
             }} />
 
