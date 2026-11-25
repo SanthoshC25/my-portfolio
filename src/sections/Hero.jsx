@@ -1,4 +1,4 @@
-import { useEffect, useRef, Suspense } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
@@ -20,6 +20,14 @@ const item = {
 
 export default function Hero() {
   const bgRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     // Animated background particles via CSS
@@ -279,8 +287,13 @@ export default function Hero() {
               </div>
             }>
               <Canvas
-                camera={{ position: [0, 0, 5.6], fov: 48 }}
-                style={{ width: '100%', height: '100%', minHeight: 280, maxHeight: 490 }}
+                camera={{ position: [0, 0, isMobile ? 3.7 : 5.4], fov: 48 }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  touchAction: 'pan-y',
+                  pointerEvents: isMobile ? 'none' : 'auto',
+                }}
                 gl={{ antialias: true, alpha: true }}
                 dpr={[1, 2]}
               >
@@ -288,6 +301,7 @@ export default function Hero() {
                 <OrbitControls
                   enableZoom={false}
                   enablePan={false}
+                  enableRotate={!isMobile}
                   autoRotate
                   autoRotateSpeed={0.5}
                   dampingFactor={0.05}
@@ -304,13 +318,15 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 4.0, duration: 0.5 }}
+          transition={{ duration: 0.5 }}
           onClick={() => scrollTo('about')}
           style={{
-            position: 'absolute',
-            bottom: 30,
+            position: isMobile ? 'relative' : 'absolute',
+            bottom: isMobile ? 'auto' : 30,
             left: '50%',
             transform: 'translateX(-50%)',
+            marginTop: isMobile ? 24 : 0,
+            marginBottom: isMobile ? 24 : 0,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

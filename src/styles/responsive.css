@@ -184,10 +184,19 @@
   .hero-3d-container {
     flex: 1 1 100% !important;
     width: 100% !important;
-    max-width: 310px !important;
-    min-height: 310px !important;
-    height: 310px !important;
+    max-width: 320px !important;
+    min-height: 320px !important;
+    height: 320px !important;
     margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    touch-action: pan-y !important;
+  }
+
+  .hero-3d-container canvas {
+    touch-action: pan-y !important;
+    pointer-events: none !important;
   }
 
   /* Projects Grid */
