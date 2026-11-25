@@ -1,28 +1,19 @@
 /**
  * Experience Data
  * ═══════════════════════════════════════════
- * Edit these placeholder entries with your actual experience.
- * Add or remove entries as needed.
+ * Professional Journey of Santhosh Kumar
  */
 
 const experience = [
   {
     id: 1,
-    company: 'Your Company Name',
-    role: 'Your Role Title',
-    period: '2024 — Present',
+    company: 'Iris Medical Solution',
+    role: 'Software Developer',
+    domain: 'ASP.NET Developer',
+    period: 'January 2025 — Till Date',
     description:
-      'Describe your responsibilities, key achievements, and the impact you made in this role. Focus on technologies used and measurable results.',
-    technologies: ['React', '.NET Core', 'MySQL', 'AWS']
-  },
-  {
-    id: 2,
-    company: 'Previous Company Name',
-    role: 'Your Previous Role',
-    period: '2023 — 2024',
-    description:
-      'Describe your previous role, the projects you worked on, and the skills you developed during this period.',
-    technologies: ['JavaScript', 'ASP.NET', 'REST API', 'Bootstrap']
+      'Working as a Software Developer specializing in the ASP.NET domain, designing and maintaining robust web applications, optimizing medical software workflows, and engineering secure RESTful backend services.',
+    technologies: ['ASP.NET', '.NET Core', 'C#', 'MSSQL', 'REST API', 'JavaScript']
   }
 ];
 

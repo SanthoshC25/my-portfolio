@@ -98,9 +98,27 @@ export default function Experience() {
                       fontSize: '0.95rem',
                       fontWeight: 600,
                       color: 'var(--accent-primary)',
-                      margin: 0,
+                      margin: '2px 0 0',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 10,
+                      flexWrap: 'wrap',
                     }}>
-                      {exp.role}
+                      <span>{exp.role}</span>
+                      {exp.domain && (
+                        <span style={{
+                          fontSize: '0.72rem',
+                          fontWeight: 500,
+                          fontFamily: 'var(--font-mono)',
+                          color: 'var(--accent-secondary)',
+                          background: 'rgba(201, 164, 92, 0.1)',
+                          border: '1px solid rgba(201, 164, 92, 0.25)',
+                          padding: '2px 8px',
+                          borderRadius: 'var(--radius-sm)',
+                        }}>
+                          Domain: {exp.domain}
+                        </span>
+                      )}
                     </p>
                   </div>
                   <span style={{
